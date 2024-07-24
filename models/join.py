@@ -39,3 +39,8 @@ class JoinText(nn.Module):
               'signal_embedding': signal_embedding, 
               'text_embedding': text_embedding}
   
+  def predict(self, signal):
+     output = self.signal_model(signal)
+     logits = output['logits']
+
+     return {'logits': logits}
