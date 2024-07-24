@@ -56,9 +56,9 @@ def export(model, model_label, epoch):
         print('exporting last model')
         torch.save(model, 'output/{}/{}.pt'.format(model_label, model_label))
 
-def json_dump(metrics_dict, model_label):
-    with open('output/{}/metrics.json'.format(model_label), 'w') as f:
-        json.dump(metrics_dict, f)
+def json_dump(metrics_dict, model_label, test = False):
+    with open('output/{}/metrics{suffix}.json'.format(model_label, suffix = '_test' if test else ''), 'w') as f:
+        json.dump(metrics_dict, f, indent = 2)
 
 def find_best_thresholds(predictions, true_labels_dict, thresholds):
     num_classes = len(predictions[0])
